@@ -54,16 +54,20 @@ public class MessageService extends GeneralService {
 		});
 		dao.execute(sql);
 		List<Long> idList = sql.getList(Long.class);
-		String sqlStr = "id in(" + idList.get(0);
-		for (int i = 1; i < idList.size(); i++) {
-			sqlStr += "," + idList.get(i);
+		if (idList != null && idList.size() > 0) {
+			String sqlStr = "id in(" + idList.get(0);
+			for (int i = 1; i < idList.size(); i++) {
+				sqlStr += "," + idList.get(i);
+			}
+			sqlStr += ")";
+			List<Message> messageList = search(Message.class, Cnd.wrap(sqlStr));
+			for (Message msg : messageList) {
+				dao.fetchLinks(msg, "user");
+			}
+
+			return messageList;
 		}
-		sqlStr += ")";
-		List<Message> messageList = search(Message.class, Cnd.wrap(sqlStr));
-		for (Message msg : messageList) {
-			dao.fetchLinks(msg, "user");
-		}
-		return messageList;
+		return null;
 	}
 
 	public Message find(long id) {

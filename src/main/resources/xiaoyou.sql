@@ -3,7 +3,7 @@ drop table if exists `fr_user`;
 CREATE TABLE `fr_user` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `uname` varchar(32) NOT NULL,
-  `pwd` varchar(32) NOT NULL,
+  `pwd` varchar(32) NOT NULL default '123456',
   `nick_name` varchar(32),
   `real_name` varchar(32),
   `email` varchar(64),
@@ -48,7 +48,7 @@ CREATE TABLE `fr_group` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `gname` varchar(32) NOT NULL,
   `descript` varchar(512) ,
-  `status` int DEFAULT 0 NOT NULL COMMENT '群组状态：0：审核中；1：活动小组；2：已关闭',
+  `status` int DEFAULT 0 NOT NULL COMMENT '群组状态：0：审核中；1：活动小组；2：已关闭,3：已解散',
   `college` bigint ,
   `addr_code` bigint ,
   `createtime` date COMMENT '创建日期',
@@ -66,7 +66,7 @@ CREATE TABLE `fr_msgtype` (
 DROP TABLE IF EXISTS `fr_message`;
 CREATE TABLE `fr_message` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `title` varchar(32) NOT NULL,
+  `title` varchar(32)    ,
   `descript` text,
   `createtime` date COMMENT '发布日期',
   `status` int DEFAULT 0 NOT NULL COMMENT '状态：0：发布中；1：已关闭',
@@ -78,8 +78,8 @@ CREATE TABLE `fr_message` (
   PRIMARY KEY (`id`)
 ) DEFAULT CHARSET=utf8;
 
-#消息类型-fr_group_user
-DROP TABLE IF EXISTS `fr_group_user`;
+#消息类型-fr_user_group
+DROP TABLE IF EXISTS `fr_user_group`;
 CREATE TABLE `fr_group_user` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `fr_user_id` bigint ,

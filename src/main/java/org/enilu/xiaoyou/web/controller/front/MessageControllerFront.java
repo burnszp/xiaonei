@@ -52,12 +52,15 @@ public class MessageControllerFront {
 
 	@At("/message/addreplay")
 	@Ok("json")
-	public Message getMsg(@Param("::msg.") Message message,
+	public Object getMsg(@Param("::msg.") Message message,
 			HttpServletRequest request) throws Exception {
 		message.setCreatetime(new Date());
 
 		try {
 			User user = (User) request.getSession().getAttribute("user");
+			if (user == null) {
+				return "error:请先登录再回复";
+			}
 			message.setUid(user.getId());
 			messageService.save(message);
 			message.setUser(user);

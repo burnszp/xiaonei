@@ -17,6 +17,7 @@ import org.nutz.dao.entity.annotation.Table;
  */
 @Table("fr_group")
 public class Group {
+	public static final int STATUS_SHENHEZHONG = 0;
 	public static final int STATUS_HUODONG = 1;
 	public static final int STATUS_GUANBI = 2;
 	public static final int STATUS_JIESAN = 3;

@@ -68,6 +68,14 @@ public class GroupControllerFront {
 		request.setAttribute("userList", userList);
 	}
 
+	@At("/group/list")
+	@Ok("jsp:/page/front/group/list.jsp")
+	public List<Group> list(HttpServletRequest request) {
+		List<Group> groupList = groupService.search(Group.class, Cnd.NEW()
+				.desc("createtime"));
+		return groupList;
+	}
+
 	@At("/group/getmsg")
 	@Ok("json")
 	public List<Message> getMsg(@Param("gid") Long gid,
