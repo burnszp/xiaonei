@@ -91,13 +91,6 @@
 						aria-labelledby="messagelist-tab">
 						<table class="table table-hover table-condensed table-bordered ">
 							<thead>
-								<th style="width: 30px;"><label class="checkbox"
-									for="checkboxall"> <input type="checkbox"
-										id="checkboxall" data-toggle="checkbox"
-										class="custom-checkbox"><span class="icons"><span
-											class="icon-unchecked"></span><span class="icon-checked"></span></span>
-
-								</label></th>
 								<th>标题</th>
 								<th>创建日期</th>
 								<th>状态</th>
@@ -106,13 +99,6 @@
 							<tbody>
 								<c:forEach items="${msgList}" var="rec" varStatus="status">
 									<tr>
-										<td><label class="checkbox" for="checkbox${status.index}">
-												<input type="checkbox" value="${rec.id}"
-												id="checkbox${status.index}" data-toggle="checkbox"
-												class="custom-checkbox"><span class="icons"><span
-													class="icon-unchecked"></span><span class="icon-checked"></span></span>
-
-										</label></td>
 										<td><a target="_blank"
 											href="/message/message_detail?id=${rec.id}">${rec.title}</a></td>
 										<td><fmt:formatDate pattern="yyyy-MM-dd"
@@ -167,8 +153,10 @@
 								<table class="table">
 
 									<tbody>
+										<c:set value="0" var="joinedGroup" scope="page"></c:set>
 										<c:forEach items="${groupList}" var="group">
 											<c:if test="${group.creatorId!=user.id}">
+											<c:set value="1" var="joinedGroup"></c:set>
 												<tr>
 													<td><a href="${ctx}/group/detail?gid=${group.id}">${group.gname}</a></td>
 													<td>${group.descript}</td>
@@ -186,8 +174,12 @@
 											</c:if>
 
 										</c:forEach>
+										
 									</tbody>
 								</table>
+							<c:if test="${pageScope.joinedGroup==0 }">
+								<a href="${ctx}/group/list">你还没有加入任何群组，现在加入吧</a>	
+							</c:if>
 							</div>
 						</div>
 					</div>
@@ -195,11 +187,13 @@
 						aria-labelledby="dropdown2-tab">
 						<div class="row">
 							<div class="col-md-12">
+								<c:set value="0" var="myGroup" scope="page"></c:set>
 								<table class="table">
 
 									<tbody>
 										<c:forEach items="${groupList}" var="group">
 											<c:if test="${group.creatorId==user.id}">
+											<c:set value="1" var="myGroup"></c:set>
 												<tr>
 													<td><a href="${ctx}/group/detail?gid=${group.id}">${group.gname}</a></td>
 													<td>${group.descript}</td>
@@ -220,6 +214,9 @@
 										</c:forEach>
 									</tbody>
 								</table>
+								<c:if test="${pageScope.myGroup==0 }">
+								<a href="${ctx}/group/add">你还没有创建任何群组，立即创建</a>	
+							</c:if>
 							</div>
 						</div>
 					</div>

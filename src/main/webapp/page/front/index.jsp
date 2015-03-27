@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>weilcome</title>
+<title>校友录</title>
 <style type="text/css">
 .todo li:after{
 background: #34495;

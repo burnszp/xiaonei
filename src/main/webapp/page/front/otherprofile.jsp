@@ -84,13 +84,6 @@
 						aria-labelledby="messagelist-tab">
 						<table class="table table-hover table-condensed table-bordered ">
 							<thead>
-								<th style="width: 30px;"><label class="checkbox"
-									for="checkboxall"> <input type="checkbox"
-										id="checkboxall" data-toggle="checkbox"
-										class="custom-checkbox"><span class="icons"><span
-											class="icon-unchecked"></span><span class="icon-checked"></span></span>
-
-								</label></th>
 								<th>标题</th>
 								<th>创建日期</th>
 								<th>状态</th>
@@ -99,13 +92,6 @@
 							<tbody>
 								<c:forEach items="${msgList}" var="rec" varStatus="status">
 									<tr>
-										<td><label class="checkbox" for="checkbox${status.index}">
-												<input type="checkbox" value="${rec.id}"
-												id="checkbox${status.index}" data-toggle="checkbox"
-												class="custom-checkbox"><span class="icons"><span
-													class="icon-unchecked"></span><span class="icon-checked"></span></span>
-
-										</label></td>
 										<td><a target="_blank"
 											href="/message/message_detail?id=${rec.id}">${rec.title}</a></td>
 										<td><fmt:formatDate pattern="yyyy-MM-dd"

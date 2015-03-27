@@ -11,13 +11,15 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h4>${message.title}</h4>
+			<strong><a href="${ctx}/group/detail?gid=${message.group.id}">${message.group.gname}</a></strong>
+			<em style="padding-left:50px;">${message.msgType.name}</em>
 		</div>
 	</div>
 	<hr>
 	<div class="row">
 		<div class="col-md-2">
 
-			${message.user.nickName}<br>
+			<a href="${ctx}/profilet?uid=${message.user.id}">${message.user.nickName}</a><br>
 			<fmt:formatDate value="${message.createtime}" pattern="yyyy-MM-dd" />
 		</div>
 		<div class="col-md-10">${message.descript}</div>
@@ -27,7 +29,7 @@
 		<div class="row">
 			<div class="col-md-2">
 
-				${replayMsg.user.nickName}<br>
+				<a href="${ctx}/profilet?uid=${replayMsg.user.id}">${replayMsg.user.nickName}</a><br>
 				<fmt:formatDate value="${replayMsg.createtime}" pattern="yyyy-MM-dd" />
 			</div>
 			<div class="col-md-10">${replayMsg.descript}</div>

@@ -77,8 +77,7 @@
 		</div>
 		<div class="collapse navbar-collapse" id="navbar-collapse-01">
 			<ul class="nav navbar-nav">
-				<li flag="type"><a href="${ctx}/">校友志</a></li>
-				<li flag="my"><a href="#">我的小窝</a></li>
+				<li flag="group"><a href="${ctx}/group/list">黑板报</a></li>
 				<%
 					Object adminObj= session.getAttribute("admin");
 					if (adminObj != null) {

@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <title>${group.gname}-群组频道</title>
 </head>
-<body flag="index">
+<body flag="group">
 	<div class="row">
 		<div class="col-md-8">
 			<h4>${group.gname }</h4>
@@ -20,7 +20,7 @@
 		<div class="col-md-4">
 			<h6>群组成员</h6>
 			<c:forEach items="${userList }" var="user">
-				<a href="/user/user_detail?uid=${user.id }">${user.nickName }</a>
+				<a href="${ctx}/profilet?uid=${user.id }">${user.nickName }</a>
 				<br />
 			</c:forEach>
 			<div class="btn-toolbar">

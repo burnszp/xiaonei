@@ -90,7 +90,6 @@
 						</div>
 						<div class="form-group">
 							<div class="col-lg-offset-2 col-lg-10">
-								<a href="/admin/user" class="btn btn-primary">返回</a>
 								<button type="submit" class="btn btn-success">保存</button>
 							</div>
 						</div>
