@@ -3,11 +3,13 @@ package org.enilu.xiaoyou.service;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.enilu.xiaoyou.entity.Group;
 import org.enilu.xiaoyou.entity.Message;
+import org.enilu.xiaoyou.entity.MsgBox;
 import org.enilu.xiaoyou.entity.User;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Sqls;
@@ -34,12 +36,22 @@ public class GroupService extends GeneralService {
 	 *            id
 	 * @param status
 	 *            要更改为的状态
+	 * @param statusMsg
+	 *            更改群组原因
 	 */
-	public boolean updateGroupStatus(long id, int status) {
+	public boolean updateGroupStatus(long id, int status, String statusMsg) {
 		Group entity = find(id, Group.class);
 		entity.setStatus(status);
 		try {
 			update(entity);
+			entity.getCreator();
+			MsgBox msg = new MsgBox();
+			msg.setSendUser("系统管理员");
+			msg.setDescript(statusMsg);
+			msg.setSendDate(new Date());
+			msg.setIfRead(MsgBox.NO_READ);
+			msg.setReceiveUser(entity.getCreatorId());
+			save(msg);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -58,7 +70,9 @@ public class GroupService extends GeneralService {
 		return (List<Group>) search(
 				Group.class,
 
-				Cnd.wrap("WHERE id IN(select gid from fr_message GROUP BY gid ORDER BY count(*) DESC) order by id  limit 0,4"));
+				Cnd.wrap("WHERE status="
+						+ Group.STATUS_HUODONG
+						+ " and id IN(select gid from fr_message GROUP BY gid ORDER BY count(*) DESC) order by id  limit 0,4"));
 
 	}
 
@@ -69,9 +83,11 @@ public class GroupService extends GeneralService {
 	 */
 	public List<Group> findNew() {
 
-		return (List<Group>) search(Group.class,
+		return (List<Group>) search(
+				Group.class,
 
-		Cnd.wrap("order by createtime desc limit 0,4"));
+				Cnd.wrap("where status=" + Group.STATUS_HUODONG
+						+ " order by createtime desc limit 0,4"));
 
 	}
 

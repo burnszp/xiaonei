@@ -42,8 +42,9 @@ public class MessageController {
 		pager.setPageNumber(pageNumber);
 		pager.setPageSize(pageSize);
 		List<Message> list = messageService.searchByPage(Message.class,
-				Cnd.NEW(), pager);
-		int count = messageService.searchCount(Message.class, Cnd.NEW());
+				Cnd.where("replayId", "=", 0), pager);
+		int count = messageService.searchCount(Message.class,
+				Cnd.where("replayId", "=", 0));
 		pager.setRecordCount(count);
 		request.setAttribute("pager", pager);
 		request.setAttribute("list", list);

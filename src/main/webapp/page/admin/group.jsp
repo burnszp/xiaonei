@@ -63,17 +63,15 @@
 												class="icon-unchecked"></span><span class="icon-checked"></span></span>
 
 									</label></td>
-									<td><a href="${ctx}/admin/groupform?id=${rec.id}">${rec.gname}</a></td>
+									<td><a href="${ctx}/group/detail?gid=${rec.id}">${rec.gname}</a></td>
 									<td>${rec.descript}</td>
-									<td>
-										<!-- <select value="0"><option>审核中</option>
-											<option value="1">活动小组</option>
-											<option value="2">已关闭</option></select>
-											 --> <span class="mrl"  id="${rec.id}" status="${rec.status}" title="点击更改小组状态" > <input type="checkbox" ${rec.status==0?"checked":"" } data-on-text="活动" data-off-text="已关闭"
-											data-toggle="switch" name="switch-0${status.index+1}" data-on-color="success"
-											id="custom-switch-0${status.index+1}" />
-									</span>
-									</td>
+									<td><select class="form-control" id="statusSel${rec.id}"
+										recid="${rec.id}">
+											<option value="0" ${rec.status=="0"?"selected":""}>审核中</option>
+											<option value="1" ${rec.status=="1"?"selected":""}>活动</option>
+											<option value="2" ${rec.status=="2"?"selected":""}>关闭</option>
+											<option value="3" ${rec.status=="3"?"selected":""}>解散</option>
+									</select></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -83,6 +81,37 @@
 			</div>
 		</div>
 	</div>
+
+	<div id="statusModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">确定此操作？</h4>
+				</div>
+				<div class="modal-body">
+						<form class="form-horizontal" role="form" >
+						<div class="form-group">
+							<label class="col-lg-2 control-label">备注</label>
+							<div class="col-lg-10">
+							<textarea rows="5" cols="10" class="form-control" id="statusMsg"></textarea>	   
+							</div>
+						</div>
+						</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" id="changeMsgBtn">确定</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
 
 	<script type="text/javascript">
 		var pageSize = '${pager.pageSize}';

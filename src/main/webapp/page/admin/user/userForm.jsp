@@ -25,7 +25,7 @@
 				</div>
 
 				<div class="panel-body">
-					<form class="form-horizontal" role="form" action="${ctx}/admin/user/save" method="post">
+					<form class="form-horizontal" role="form" ><!-- action="${ctx}/admin/user/save" method="post" -->
 						<input type="hidden" name="user.id" value="${obj.id}"/>
 						<div class="form-group">
 							<label class="col-lg-2 control-label">用户名</label>
@@ -46,9 +46,23 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-lg-2 control-label">tel</label>
+							<div class="col-lg-10">
+								<input type="text" name="user.email" class="form-control" value="${obj.tel}">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-2 control-label">QQ</label>
+							<div class="col-lg-10">
+								<input type="text" name="user.email" class="form-control" value="${obj.qq}">
+							</div>
+						</div>
+						<div class="form-group">
 							<div class="col-lg-offset-2 col-lg-10">
 								<a href="${ctx }/admin/user" class="btn btn-primary">返回</a>
+								<!-- 
 								<button type="submit" class="btn btn-success">保存</button>
+								 -->
 							</div>
 						</div>
 					</form>

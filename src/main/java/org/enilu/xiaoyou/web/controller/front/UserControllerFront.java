@@ -6,10 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.enilu.xiaoyou.entity.Group;
 import org.enilu.xiaoyou.entity.Message;
+import org.enilu.xiaoyou.entity.MsgBox;
 import org.enilu.xiaoyou.entity.Region;
 import org.enilu.xiaoyou.entity.User;
 import org.enilu.xiaoyou.service.GroupService;
 import org.enilu.xiaoyou.service.MessageService;
+import org.enilu.xiaoyou.service.MsgBoxService;
 import org.enilu.xiaoyou.service.RegionService;
 import org.enilu.xiaoyou.service.UserService;
 import org.nutz.dao.Cnd;
@@ -40,6 +42,9 @@ public class UserControllerFront {
 	private GroupService groupService;
 	@Inject
 	private MessageService messageService;
+
+	@Inject
+	private MsgBoxService msgBoxService;
 
 	@At("/front/regist")
 	@Ok("jsp:/page/front/regist.jsp")
@@ -165,6 +170,8 @@ public class UserControllerFront {
 				Cnd.where("uid", "=", user.getId()).and("replayId", "=", 0));
 
 		request.setAttribute("msgList", msgList);
+		List<MsgBox> msgBoxList = msgBoxService.query(user.getId());
+		request.setAttribute("msgBoxList", msgBoxList);
 		return new JspView("/page/front/profile.jsp");
 	}
 

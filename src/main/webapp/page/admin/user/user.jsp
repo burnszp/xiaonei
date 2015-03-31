@@ -24,6 +24,7 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div style="display: inline;">用户管理</div>
+					<!-- 
 					<div style="display: inline; float: right; margin-top: -5px;">
 						<div class="btn-group">
 							<button data-toggle="dropdown"
@@ -37,6 +38,7 @@
 							</ul>
 						</div>
 					</div>
+					 -->
 				</div>
 
 				<div class="panel-body">

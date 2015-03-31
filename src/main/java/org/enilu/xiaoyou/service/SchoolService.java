@@ -25,7 +25,7 @@ public class SchoolService extends GeneralService {
 	 * 清空学员信息
 	 */
 	public void clear() {
-		delete("college", Cnd.NEW());
+		delete("fr_college", Cnd.NEW());
 	}
 
 	public void collect() {

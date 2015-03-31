@@ -1,4 +1,6 @@
-<%@page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +47,7 @@
 		<div class="col-md-2">
 			<div class="tile">
 				<img class="tile-image big-illustration" alt=""
-					src="${ctx}/resource/flat-ui/2.1.3/images/illustrations/share.png">
+					src="${ctx}/resource/flat-ui/2.1.3/images/illustrations/compass.png">
 				<h3 class="tile-title">
 					<a href="${ctx}/admin/region">地址管理</a>
 				</h3>
@@ -123,8 +125,5 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-		seajs.use('${ctx}/resource/js/admin/school')
-	</script>
 </body>
 </html>

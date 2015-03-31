@@ -72,7 +72,7 @@ public class GroupControllerFront {
 	@Ok("jsp:/page/front/group/list.jsp")
 	public List<Group> list(HttpServletRequest request) {
 		List<Group> groupList = groupService.search(Group.class, Cnd.NEW()
-				.desc("createtime"));
+				.where("status", "=", Group.STATUS_HUODONG).desc("createtime"));
 		return groupList;
 	}
 

@@ -35,6 +35,10 @@
 					<li role="presentation" class=""><a href="#password"
 						role="tab" id="profile-tab" data-toggle="tab"
 						aria-controls="profile" aria-expanded="false">修改密码</a></li>
+
+					<li role="presentation" class=""><a href="#msgbox" role="tab"
+						id="profile-tab" data-toggle="tab" aria-controls="profile"
+						aria-expanded="false">收件箱</a></li>
 				</ul>
 				<div id="myTabContent" class="tab-content">
 					<div role="tabpanel" class="tab-pane fade active in" id="home"
@@ -81,8 +85,9 @@
 								</div>
 							</div>
 							<div class="form-group">
-							<label class="col-lg-2 control-label"><a class="btn btn-primary" href="${ctx}/profile/update">完善个人资料</a></label>
-								
+								<label class="col-lg-2 control-label"><a
+									class="btn btn-primary" href="${ctx}/profile/update">完善个人资料</a></label>
+
 							</div>
 
 						</form>
@@ -156,30 +161,27 @@
 										<c:set value="0" var="joinedGroup" scope="page"></c:set>
 										<c:forEach items="${groupList}" var="group">
 											<c:if test="${group.creatorId!=user.id}">
-											<c:set value="1" var="joinedGroup"></c:set>
+												<c:set value="1" var="joinedGroup"></c:set>
 												<tr>
 													<td><a href="${ctx}/group/detail?gid=${group.id}">${group.gname}</a></td>
 													<td>${group.descript}</td>
 													<td>${group.college.cname}</td>
 													<td>${group.region.name}</td>
-													<td>
-													<c:if test="${group.status==2}">			
+													<td><c:if test="${group.status==2}">			
 															已关闭
-														</c:if> 
-														<c:if test="${group.status==3}">
+														</c:if> <c:if test="${group.status==3}">
 															已解散
-														</c:if>
-													</td>
+														</c:if></td>
 												</tr>
 											</c:if>
 
 										</c:forEach>
-										
+
 									</tbody>
 								</table>
-							<c:if test="${pageScope.joinedGroup==0 }">
-								<a href="${ctx}/group/list">你还没有加入任何群组，现在加入吧</a>	
-							</c:if>
+								<c:if test="${pageScope.joinedGroup==0 }">
+									<a href="${ctx}/group/list">你还没有加入任何群组，现在加入吧</a>
+								</c:if>
 							</div>
 						</div>
 					</div>
@@ -193,7 +195,7 @@
 									<tbody>
 										<c:forEach items="${groupList}" var="group">
 											<c:if test="${group.creatorId==user.id}">
-											<c:set value="1" var="myGroup"></c:set>
+												<c:set value="1" var="myGroup"></c:set>
 												<tr>
 													<td><a href="${ctx}/group/detail?gid=${group.id}">${group.gname}</a></td>
 													<td>${group.descript}</td>
@@ -201,24 +203,44 @@
 													<td>${group.region.name}</td>
 													<td><c:if test="${group.status==1}">
 															<a href="${ctx}/group/jiesan?gid=${group.id}">解散该群组</a>
-														</c:if> 
-														<c:if test="${group.status==2}">			
+														</c:if> <c:if test="${group.status==2}">			
 															已关闭
-														</c:if> 
-														<c:if test="${group.status==3}">
+														</c:if> <c:if test="${group.status==3}">
 															已解散
-														</c:if>
-													</td>
+														</c:if></td>
 												</tr>
 											</c:if>
 										</c:forEach>
 									</tbody>
 								</table>
 								<c:if test="${pageScope.myGroup==0 }">
-								<a href="${ctx}/group/add">你还没有创建任何群组，立即创建</a>	
-							</c:if>
+									<a href="${ctx}/group/add">你还没有创建任何群组，立即创建</a>
+								</c:if>
 							</div>
 						</div>
+					</div>
+					<div role="tabpanel" class="tab-pane fade" id="msgbox"
+						aria-labelledby="msgbox-tab">
+						<table class="table table-hover table-condensed table-bordered">
+							<thead>
+								<th>消息内容</th>
+								<th>发送者</th>
+								<th>发送日期</th>
+							</thead>
+							<tobdy>
+							<c:forEach items="${msgBoxList}" var="msg">
+							<tr>
+								<td>
+								  ${msg.descript}
+								</td>
+								<td>${msg.sendUser}</td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd"
+									value="${rec.sendDate}" /></td>
+							</tr>
+							</c:forEach>
+							</tobdy>
+						</table>
+
 					</div>
 				</div>
 			</div>

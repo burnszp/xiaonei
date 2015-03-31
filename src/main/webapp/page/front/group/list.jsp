@@ -18,9 +18,9 @@ background: #34495;
 			<div class="col-md-3">
 				<div class="tile">
 					<img class="tile-image big-illustration" alt=""
-						src="/resource/flat-ui/2.1.3/images/illustrations/share.png">
+						src="${ctx}/resource/flat-ui/2.1.3/images/illustrations/share.png">
 					<h3 class="tile-title">
-						<a href="/group/detail?gid=${rec.id }">${rec.gname}</a>
+						<a href="${ctx}/group/detail?gid=${rec.id }">${rec.gname}</a>
 					</h3>
 					<p>${rec.descript}</p>
 				</div>

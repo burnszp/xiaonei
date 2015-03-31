@@ -86,3 +86,15 @@ CREATE TABLE `fr_group_user` (
   `fr_group_id` bigint ,
   PRIMARY KEY (`id`)
 ) DEFAULT CHARSET=utf8;
+
+
+#系统消息-fr_msgbox
+DROP TABLE IF EXISTS `fr_msgbox`;
+CREATE TABLE `fr_msgbox` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `send_user` varchar(32) ,
+  `send_date` date,
+  `if_read` int,
+  `receive_user` bigint ,
+  PRIMARY KEY (`id`)
+) DEFAULT CHARSET=utf8;

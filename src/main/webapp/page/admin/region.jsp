@@ -22,19 +22,6 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div style="display: inline;">地区管理</div>
-					<div style="display: inline; float: right; margin-top: -5px;">
-						<div class="btn-group">
-							<button data-toggle="dropdown"
-								class="btn btn-primary dropdown-toggle" type="button">
-								&nbsp;&nbsp;&nbsp;&nbsp;操作 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-									class="caret"></span>
-							</button>
-							<ul role="menu" class="dropdown-menu">
-								<li><a href="#" flag="view">查看</a></li>
-								<li><a href="#" flag="del">删除 </a></li> 
-							</ul>
-						</div>
-					</div>
 				</div>
 
 				<div class="panel-body">
