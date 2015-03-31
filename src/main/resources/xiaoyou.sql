@@ -52,6 +52,7 @@ CREATE TABLE `fr_group` (
   `college` bigint ,
   `addr_code` bigint ,
   `createtime` date COMMENT '创建日期',
+  `creator_id` bigint,
   PRIMARY KEY (`id`)
 ) DEFAULT CHARSET=utf8;
 #消息类型-fr_msgtype
