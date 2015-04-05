@@ -235,7 +235,7 @@
 								</td>
 								<td>${msg.sendUser}</td>
 								<td><fmt:formatDate pattern="yyyy-MM-dd"
-									value="${rec.sendDate}" /></td>
+									value="${msg.sendDate}" /></td>
 							</tr>
 							</c:forEach>
 							</tobdy>
