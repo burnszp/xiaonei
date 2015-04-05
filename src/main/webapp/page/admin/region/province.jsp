@@ -22,6 +22,7 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div style="display: inline;">地区管理</div>
+					<!-- 
 					<div style="display: inline; float: right; margin-top: -5px;">
 						<div class="btn-group">
 							<button data-toggle="dropdown"
@@ -35,18 +36,25 @@
 							</ul>
 						</div>
 					</div>
+					 -->
 				</div>
 
 				<div class="panel-body">
 					<table class="table table-hover table-condensed table-bordered ">
 						<thead>
+						<!-- 
 							<th><label class="checkbox" for="checkboxall"> <input
 									type="checkbox" id="checkboxall" data-toggle="checkbox"
 									class="custom-checkbox"><span class="icons"><span
 										class="icon-unchecked"></span><span class="icon-checked"></span></span>
 
 							</label></th>
+						 -->
+						 	<th>地区编码</th>
 							<th>名称</th>
+							<th>经度</th>
+							<th>纬度</th>
+
 							 
 
 						</thead>
@@ -54,6 +62,7 @@
 						<tbody>
 							<c:forEach items="${list}" var="rec" varStatus="status">
 								<tr>
+								 <!--
 									<td><label class="checkbox" for="checkbox${status.index}">
 											<input type="checkbox" value="${rec.id}"
 											id="checkbox${status.index}" data-toggle="checkbox"
@@ -61,8 +70,12 @@
 												class="icon-unchecked"></span><span class="icon-checked"></span></span>
 
 									</label></td>
+									-->
+									<td>${rec.id}</td>
 									<td><a href="${ctx}/admin/region/cities?pid=${rec.id}">${rec.name}</a></td>
-									 
+									  
+										<td>${rec.lng}</td>
+										<td>${rec.lat}</td>
 
 								</tr>
 							</c:forEach>

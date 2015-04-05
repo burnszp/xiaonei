@@ -30,9 +30,11 @@
 									class="caret"></span>
 							</button>
 							<ul role="menu" class="dropdown-menu">
-								<li><a href="#" flag="view">查看</a></li>
+								<!-- <li><a href="#" flag="view">查看</a></li>
 								<li><a href="#" flag="del">删除 </a></li>
-								<li class="divider"></li>
+									<li class="divider"></li>
+								 -->
+							
 								<li><a href="${ctx}/admin/schoolcollect">初始化</a></li>
 							</ul>
 						</div>

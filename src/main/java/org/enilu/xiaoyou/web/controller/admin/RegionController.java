@@ -73,6 +73,8 @@ public class RegionController {
 				Cnd.where("id", "like", provinceId.substring(0, 2) + "%").and(
 						"id", "<>", provinceId));
 		pager.setRecordCount(count);
+		request.setAttribute("province",
+				regionService.find(Long.valueOf(provinceId), Region.class));
 		request.setAttribute("pid", provinceId);
 		request.setAttribute("pager", pager);
 		request.setAttribute("list", list);

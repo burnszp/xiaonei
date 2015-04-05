@@ -23,7 +23,7 @@
 		<div class="col-md-12">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<div style="display: inline;">用户管理</div>
+					<div style="display: inline;">用户管理(总注册用户数目：${pager.recordCount})</div>
 					<!-- 
 					<div style="display: inline; float: right; margin-top: -5px;">
 						<div class="btn-group">

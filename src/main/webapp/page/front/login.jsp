@@ -36,6 +36,7 @@
 						<div class="form-group">
 							<div class="col-lg-offset-2 col-lg-10">
 								<button type="submit" class="btn btn-success">登录</button>
+								&nbsp;&nbsp;&nbsp;还没有帐号？点击<a href="${ctx}/front/regist" class="btn btn-info">注册</a>
 							</div>
 						</div>
 					</form>
