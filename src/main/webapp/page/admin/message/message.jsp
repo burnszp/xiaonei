@@ -30,6 +30,7 @@
 							 
 							<th>标题</th>
 							<th>创建日期</th>
+							<th>发布者</th>
 							<th>状态</th> 
 						</thead>
 
@@ -39,7 +40,14 @@
 								 
 									<td><a href="${ctx}/message/message_detail?id=${rec.id}">${rec.title}</a></td>
 									<td><fmt:formatDate pattern="yyyy-MM-dd" value="${rec.createtime}"/></td>
-									<td>${rec.status==0?"发布中":"已关闭"}</td>
+									 <td><a href="">张三</a></td>
+									<td><select class="form-control" id="statusSel${rec.id}"
+										recid="${rec.id}">
+											<option value="0" ${rec.status=="1"?"selected":""}>审核中</option>
+											<option value="1" ${rec.status=="0"?"selected":""}>发布中</option>
+											<option value="2" ${rec.status=="2"?"selected":""}>关闭</option>
+											<option value="3" ${rec.status=="3"?"selected":""}>解散</option>
+									</select></td>
 
 								</tr>
 							</c:forEach>

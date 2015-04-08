@@ -21,7 +21,7 @@
 		<div class="col-md-12">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<div style="display: inline;">地区管理</div>
+					<div style="display: inline;">省份管理</div>
 					<!-- 
 					<div style="display: inline; float: right; margin-top: -5px;">
 						<div class="btn-group">

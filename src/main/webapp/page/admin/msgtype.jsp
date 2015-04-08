@@ -12,7 +12,7 @@
 			<ol class="breadcrumb">
 				<li><a href="/${ctx}">首页</a></li>
 				<li><a href="${ctx}/admin">系统管理</a></li>
-				<li class="active">消息类型管理</li>
+				<li class="active">帖子类型管理</li>
 			</ol>
 		</div>
 	</div>
@@ -21,7 +21,7 @@
 		<div class="col-md-12">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<div style="display: inline;">消息类型管理</div>
+					<div style="display: inline;">帖子类型管理</div>
 					<div style="display: inline; float: right; margin-top: -5px;">
 						<div class="btn-group">
 							<button data-toggle="dropdown"

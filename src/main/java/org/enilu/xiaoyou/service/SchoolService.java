@@ -28,8 +28,11 @@ public class SchoolService extends GeneralService {
 		delete("fr_college", Cnd.NEW());
 	}
 
+	/**
+	 * 采集学校
+	 */
 	public void collect() {
-
+		this.clear();
 		String url = "http://edu.sina.com.cn/gaokao/2014-08-08/1903430534.shtml";
 		try {
 			Document doc = Jsoup.connect(url).timeout(100000).get();

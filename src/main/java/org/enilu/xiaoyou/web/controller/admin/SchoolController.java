@@ -52,8 +52,6 @@ public class SchoolController {
 	@At("/admin/schoolcollect")
 	@Ok("redirect:/admin/school")
 	public void collect() {
-		schoolService.clear();
-		// 已经采集完毕
 		schoolService.collect();
 	}
 }
