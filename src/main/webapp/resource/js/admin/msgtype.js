@@ -1,12 +1,9 @@
 define(function(require, exports, module) {
 	var Page = require('page');
-	var Tooltip = require('tooltip');
-	var tooltip = new Tooltip();
 	new Page(pageSize, pageNumber, pageCount);
-	$('a[flag="view"').click(function() {
-		tooltip.tooltip('完善中...');
-	});
+	var tooltip = require('tooltip');
 	$('a[flag="del"').click(function() {
+			
 			selectedIds="";
 			var checkboxs = $('input[type="checkbox"]:checked');
 			if(checkboxs.length==0){

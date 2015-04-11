@@ -77,7 +77,7 @@
 		</div>
 		<div class="collapse navbar-collapse" id="navbar-collapse-01">
 			<ul class="nav navbar-nav">
-				<li flag="group"><a href="${ctx}/group/list">黑板报</a></li>
+				<li flag="group"><a href="${ctx}/group/list">全部群组</a></li>
 				<%
 					Object adminObj= session.getAttribute("admin");
 					if (adminObj != null) {
@@ -88,9 +88,9 @@
 				<%} %>
 
 			</ul>
-
+			
 			<form class="navbar-form navbar-left" action="#" role="search">
-
+<!-- 
 				<div class="form-group">
 					<div class="input-group">
 						<input class="form-control" id="navbarInput-01" type="search"
@@ -101,6 +101,7 @@
 						</span>
 					</div>
 				</div>
+				 -->
 				<div class="form-group">
 					<div class="input-group">
 						<p class="bg-warning" id="tooltip"
@@ -108,6 +109,7 @@
 					</div>
 				</div>
 			</form>
+			
 			<ul class="nav navbar-nav navbar-right">
 
 				<%

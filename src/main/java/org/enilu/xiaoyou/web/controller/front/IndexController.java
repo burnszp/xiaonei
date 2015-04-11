@@ -40,8 +40,9 @@ public class IndexController {
 		List<Group> hotGroupList = groupService.findHot();
 		// 最新的四个群组
 		List<Group> newGroupList = groupService.findNew();
-		// 最新的帖子（测试查的所有前6个)
+		// 最新的帖子（测试查的所有前20个)
 		List<Message> newMessageList = messageService.findNew();
+		// 最热的帖子
 		List<Message> hotMessageList = messageService.findHot();
 		request.setAttribute("hotGroupList", hotGroupList);
 		request.setAttribute("newGroupList", newGroupList);

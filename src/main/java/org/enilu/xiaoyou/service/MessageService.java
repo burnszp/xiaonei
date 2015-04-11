@@ -27,7 +27,11 @@ import org.nutz.ioc.loader.annotation.IocBean;
  */
 @IocBean
 public class MessageService extends GeneralService {
-
+	/**
+	 * 查询最新的20条帖子
+	 * 
+	 * @return
+	 */
 	public List<Message> findNew() {
 		List<Message> messageList = (List<Message>) search(
 				Message.class,
@@ -39,8 +43,12 @@ public class MessageService extends GeneralService {
 		return messageList;
 	}
 
+	/**
+	 * 查询最热的10条帖子
+	 * 
+	 * @return
+	 */
 	public List<Message> findHot() {
-		// ;
 		Sql sql = Sqls
 				.create("select replay_id   from fr_message group by replay_id having replay_id is not null order by count(*) desc limit 0,10");
 		sql.setCallback(new SqlCallback() {
