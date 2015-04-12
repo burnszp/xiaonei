@@ -28,6 +28,7 @@ define(function(require, exports, module) {
 	});
 	$('#changeMsgBtn').click(function() {
 		var statusMsg = $('#statusMsg').val();
+		alert(statusMsg);
 		$.post(ctx + '/admin/updategroupstatus', {
 			id : groupId,
 			status : status,

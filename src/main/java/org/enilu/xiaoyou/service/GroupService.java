@@ -42,12 +42,26 @@ public class GroupService extends GeneralService {
 	public boolean updateGroupStatus(long id, int status, String statusMsg) {
 		Group entity = find(id, Group.class);
 		entity.setStatus(status);
+		String operate = "";
+		switch (status) {
+		case Group.STATUS_GUANBI:
+			operate = "关闭";
+			break;
+		case Group.STATUS_HUODONG:
+			operate = "恢复活动：";
+			break;
+		case Group.STATUS_JIESAN:
+			operate = "解散";
+			break;
+
+		}
 		try {
 			update(entity);
 			entity.getCreator();
 			MsgBox msg = new MsgBox();
 			msg.setSendUser("系统管理员");
-			msg.setDescript(statusMsg);
+			msg.setDescript(operate + "群组：【" + entity.getGname() + "】备注："
+					+ statusMsg);
 			msg.setSendDate(new Date());
 			msg.setIfRead(MsgBox.NO_READ);
 			msg.setReceiveUser(entity.getCreatorId());

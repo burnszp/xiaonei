@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50149
 File Encoding         : 65001
 
-Date: 2015-04-12 16:16:12
+Date: 2015-04-12 22:15:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -70,9 +70,9 @@ DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 DROP TABLE IF EXISTS `acct_user`;
 CREATE TABLE `acct_user` (
 `id`  bigint(20) NOT NULL ,
-`login_name`  varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
-`name`  varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
-`password`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+`login_name`  varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '管理员帐号' ,
+`name`  varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '管理员姓名' ,
+`password`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '管理员密码' ,
 `salt`  varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
 `register_date`  timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ,
 PRIMARY KEY (`id`),
@@ -80,6 +80,7 @@ UNIQUE INDEX `login_name` USING BTREE (`login_name`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+COMMENT='管理员'
 
 ;
 
@@ -106,13 +107,14 @@ DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 DROP TABLE IF EXISTS `fr_college`;
 CREATE TABLE `fr_college` (
 `id`  bigint(20) NOT NULL ,
-`cname`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+`cname`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '学校名称' ,
 `addr_code`  varchar(6) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '所在地区编码对应sys_region表中的id' ,
 `addr`  varchar(62) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '详细地址' ,
 PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+COMMENT='学院，院系'
 
 ;
 
@@ -122,17 +124,18 @@ DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 DROP TABLE IF EXISTS `fr_group`;
 CREATE TABLE `fr_group` (
 `id`  bigint(20) NOT NULL AUTO_INCREMENT ,
-`gname`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
-`descript`  varchar(512) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+`gname`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '群组名称' ,
+`descript`  varchar(512) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述' ,
 `status`  int(11) NOT NULL DEFAULT 1 COMMENT '群组状态：1：活动小组；2：已关闭;3:已关闭' ,
 `college`  bigint(20) NULL DEFAULT NULL COMMENT '所属学校' ,
 `addr_code`  bigint(20) NULL DEFAULT NULL COMMENT '群组所在地区编码' ,
-`createtime`  date NULL DEFAULT '0000-00-00' ,
-`creator_id`  bigint(20) NULL DEFAULT NULL ,
+`createtime`  date NULL DEFAULT '0000-00-00' COMMENT '创建日期' ,
+`creator_id`  bigint(20) NULL DEFAULT NULL COMMENT '创建者id' ,
 PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+COMMENT='群组'
 AUTO_INCREMENT=11
 
 ;
@@ -143,20 +146,21 @@ AUTO_INCREMENT=11
 DROP TABLE IF EXISTS `fr_message`;
 CREATE TABLE `fr_message` (
 `id`  bigint(20) NOT NULL AUTO_INCREMENT ,
-`title`  varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
-`descript`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`title`  varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '标题' ,
+`descript`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '内容' ,
 `createtime`  date NULL DEFAULT NULL COMMENT '发布日期' ,
 `status`  int(11) NULL DEFAULT 0 COMMENT '状态：0：发布中；1：已关闭' ,
 `tid`  bigint(20) NULL DEFAULT NULL COMMENT '所属消息类型id' ,
 `uid`  bigint(20) NULL DEFAULT NULL COMMENT '发布者id' ,
-`gid`  bigint(20) NULL DEFAULT NULL ,
+`gid`  bigint(20) NULL DEFAULT NULL COMMENT '所属群组id' ,
 `replay_id`  bigint(20) NULL DEFAULT 0 COMMENT '如果该字段有值，说明该消息是一个回复消息，该字段表示回复的那个消息的id' ,
 `istop`  int(11) NULL DEFAULT 1 COMMENT '是否置顶：0是，1：不制定' ,
 PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=77
+COMMENT='帖子'
+AUTO_INCREMENT=80
 
 ;
 
@@ -176,7 +180,7 @@ PRIMARY KEY (`id`)
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='收件箱'
-AUTO_INCREMENT=1
+AUTO_INCREMENT=8
 
 ;
 
@@ -186,8 +190,8 @@ AUTO_INCREMENT=1
 DROP TABLE IF EXISTS `fr_msgtype`;
 CREATE TABLE `fr_msgtype` (
 `id`  bigint(20) NOT NULL AUTO_INCREMENT ,
-`name`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
-`descript`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`name`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '消息类型名称' ,
+`descript`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '描述' ,
 PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
@@ -208,6 +212,7 @@ PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+COMMENT='学校'
 AUTO_INCREMENT=1
 
 ;
@@ -218,20 +223,21 @@ AUTO_INCREMENT=1
 DROP TABLE IF EXISTS `fr_user`;
 CREATE TABLE `fr_user` (
 `id`  bigint(20) NOT NULL AUTO_INCREMENT ,
-`uname`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
-`pwd`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
-`nick_name`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
-`real_name`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
-`email`  varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
-`tel`  varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
-`qq`  varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+`uname`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户名' ,
+`pwd`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码' ,
+`nick_name`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '昵称' ,
+`real_name`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '真实姓名' ,
+`email`  varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'email' ,
+`tel`  varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电话' ,
+`qq`  varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'qq' ,
 `cid`  bigint(20) NULL DEFAULT NULL COMMENT '所属学校id' ,
 `sid`  bigint(20) NULL DEFAULT NULL COMMENT '所属院系id' ,
 PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=5
+COMMENT='用户'
+AUTO_INCREMENT=6
 
 ;
 
@@ -247,7 +253,8 @@ PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=19
+COMMENT='用户群组关系表'
+AUTO_INCREMENT=20
 
 ;
 
@@ -317,12 +324,12 @@ ALTER TABLE `fr_group` AUTO_INCREMENT=11;
 -- ----------------------------
 -- Auto increment value for `fr_message`
 -- ----------------------------
-ALTER TABLE `fr_message` AUTO_INCREMENT=77;
+ALTER TABLE `fr_message` AUTO_INCREMENT=80;
 
 -- ----------------------------
 -- Auto increment value for `fr_msgbox`
 -- ----------------------------
-ALTER TABLE `fr_msgbox` AUTO_INCREMENT=1;
+ALTER TABLE `fr_msgbox` AUTO_INCREMENT=8;
 
 -- ----------------------------
 -- Auto increment value for `fr_msgtype`
@@ -337,12 +344,12 @@ ALTER TABLE `fr_school` AUTO_INCREMENT=1;
 -- ----------------------------
 -- Auto increment value for `fr_user`
 -- ----------------------------
-ALTER TABLE `fr_user` AUTO_INCREMENT=5;
+ALTER TABLE `fr_user` AUTO_INCREMENT=6;
 
 -- ----------------------------
 -- Auto increment value for `fr_user_group`
 -- ----------------------------
-ALTER TABLE `fr_user_group` AUTO_INCREMENT=19;
+ALTER TABLE `fr_user_group` AUTO_INCREMENT=20;
 
 -- ----------------------------
 -- Auto increment value for `sys_log`

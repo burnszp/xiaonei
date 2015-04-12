@@ -52,8 +52,7 @@ public class GroupController {
 	@At("/admin/updategroupstatus")
 	@Ok("json")
 	public boolean updateGroupStatus(@Param("id") long id,
-			@Param("status") int status, String statusMsg) {
-
+			@Param("status") int status, @Param("msg") String statusMsg) {
 		return groupService.updateGroupStatus(id, status, statusMsg);
 
 	}

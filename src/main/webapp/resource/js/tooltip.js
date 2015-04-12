@@ -19,7 +19,6 @@ define(function(require, exports, module) {
 		},
 		hide : function() {
 			this.container.hide();
-			this.show(text);
 			var me = this;
 			setTimeout(function() {
 				me.hide();

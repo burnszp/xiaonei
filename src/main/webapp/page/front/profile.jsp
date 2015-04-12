@@ -45,7 +45,7 @@
 						aria-labelledby="home-tab">
 						<br>
 						<form class="form-horizontal" role="form" id="regForm"
-							action="/admin/user/save" method="post">
+							action="${ctx}/admin/user/save" method="post">
 							<input type="hidden" name="user.id" value="${user.id}">
 							<div class="form-group">
 								<label class="col-lg-2 control-label">用户名</label>
@@ -99,17 +99,18 @@
 								<th>标题</th>
 								<th>创建日期</th>
 								<th>状态</th>
+								<th>操作</th>
 							</thead>
 
 							<tbody>
 								<c:forEach items="${msgList}" var="rec" varStatus="status">
 									<tr>
 										<td><a target="_blank"
-											href="/message/message_detail?id=${rec.id}">${rec.title}</a></td>
+											href="${ctx}/message/message_detail?id=${rec.id}">${rec.title}</a></td>
 										<td><fmt:formatDate pattern="yyyy-MM-dd"
 												value="${rec.createtime}" /></td>
 										<td>${rec.status==0?"发布中":"已关闭"}</td>
-
+										<td><a href="">编辑</a>&nbsp;&nbsp;<a href="">删除</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>
