@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50149
 File Encoding         : 65001
 
-Date: 2015-04-12 10:26:08
+Date: 2015-04-12 16:16:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -55,7 +55,9 @@ CREATE TABLE `acct_role_permission` (
 `role_id`  bigint(20) NOT NULL ,
 `permission_id`  bigint(20) NOT NULL ,
 FOREIGN KEY (`role_id`) REFERENCES `acct_role` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-FOREIGN KEY (`permission_id`) REFERENCES `acct_permission` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+FOREIGN KEY (`permission_id`) REFERENCES `acct_permission` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+INDEX `role_id` USING BTREE (`role_id`) ,
+INDEX `permission_id` USING BTREE (`permission_id`) 
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
@@ -73,7 +75,8 @@ CREATE TABLE `acct_user` (
 `password`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
 `salt`  varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
 `register_date`  timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ,
-PRIMARY KEY (`id`)
+PRIMARY KEY (`id`),
+UNIQUE INDEX `login_name` USING BTREE (`login_name`) 
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
@@ -88,7 +91,9 @@ CREATE TABLE `acct_user_role` (
 `user_id`  bigint(20) NOT NULL ,
 `role_id`  bigint(20) NOT NULL ,
 FOREIGN KEY (`user_id`) REFERENCES `acct_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-FOREIGN KEY (`role_id`) REFERENCES `acct_role` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+FOREIGN KEY (`role_id`) REFERENCES `acct_role` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+INDEX `user_id` USING BTREE (`user_id`) ,
+INDEX `role_id` USING BTREE (`role_id`) 
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
@@ -116,7 +121,7 @@ DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 -- ----------------------------
 DROP TABLE IF EXISTS `fr_group`;
 CREATE TABLE `fr_group` (
-`id`  bigint(20) NOT NULL ,
+`id`  bigint(20) NOT NULL AUTO_INCREMENT ,
 `gname`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
 `descript`  varchar(512) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
 `status`  int(11) NOT NULL DEFAULT 1 COMMENT '群组状态：1：活动小组；2：已关闭;3:已关闭' ,
@@ -128,6 +133,7 @@ PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+AUTO_INCREMENT=11
 
 ;
 
@@ -136,7 +142,7 @@ DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 -- ----------------------------
 DROP TABLE IF EXISTS `fr_message`;
 CREATE TABLE `fr_message` (
-`id`  bigint(20) NOT NULL ,
+`id`  bigint(20) NOT NULL AUTO_INCREMENT ,
 `title`  varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
 `descript`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
 `createtime`  date NULL DEFAULT NULL COMMENT '发布日期' ,
@@ -150,6 +156,7 @@ PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+AUTO_INCREMENT=77
 
 ;
 
@@ -158,7 +165,7 @@ DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 -- ----------------------------
 DROP TABLE IF EXISTS `fr_msgbox`;
 CREATE TABLE `fr_msgbox` (
-`id`  bigint(20) NOT NULL ,
+`id`  bigint(20) NOT NULL AUTO_INCREMENT ,
 `send_user`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '消息发送者' ,
 `send_date`  date NULL DEFAULT NULL COMMENT '发送日期' ,
 `if_read`  int(11) NULL DEFAULT NULL COMMENT '是否读过，0：未读，1：已读' ,
@@ -169,6 +176,7 @@ PRIMARY KEY (`id`)
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='收件箱'
+AUTO_INCREMENT=1
 
 ;
 
@@ -177,13 +185,14 @@ COMMENT='收件箱'
 -- ----------------------------
 DROP TABLE IF EXISTS `fr_msgtype`;
 CREATE TABLE `fr_msgtype` (
-`id`  bigint(20) NOT NULL  AUTO INCREMENT,
+`id`  bigint(20) NOT NULL AUTO_INCREMENT ,
 `name`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
 `descript`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
 PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+AUTO_INCREMENT=5
 
 ;
 
@@ -192,13 +201,14 @@ DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 -- ----------------------------
 DROP TABLE IF EXISTS `fr_school`;
 CREATE TABLE `fr_school` (
-`id`  bigint(20) NOT NULL ,
+`id`  bigint(20) NOT NULL AUTO_INCREMENT ,
 `sname`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
 `cid`  bigint(20) NOT NULL COMMENT '所属学校id' ,
 PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+AUTO_INCREMENT=1
 
 ;
 
@@ -207,7 +217,7 @@ DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 -- ----------------------------
 DROP TABLE IF EXISTS `fr_user`;
 CREATE TABLE `fr_user` (
-`id`  bigint(20) NOT NULL ,
+`id`  bigint(20) NOT NULL AUTO_INCREMENT ,
 `uname`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
 `pwd`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
 `nick_name`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
@@ -221,6 +231,7 @@ PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+AUTO_INCREMENT=5
 
 ;
 
@@ -229,13 +240,14 @@ DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 -- ----------------------------
 DROP TABLE IF EXISTS `fr_user_group`;
 CREATE TABLE `fr_user_group` (
-`id`  bigint(20) NOT NULL ,
+`id`  bigint(20) NOT NULL AUTO_INCREMENT ,
 `fr_group_id`  bigint(20) NULL DEFAULT NULL COMMENT '群组id' ,
 `fr_user_id`  bigint(20) NULL DEFAULT NULL COMMENT '用户id' ,
 PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+AUTO_INCREMENT=19
 
 ;
 
@@ -244,7 +256,7 @@ DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_log`;
 CREATE TABLE `sys_log` (
-`id`  bigint(20) NOT NULL ,
+`id`  bigint(20) NOT NULL AUTO_INCREMENT ,
 `log_type`  tinyint(4) NOT NULL ,
 `ip`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
 `user_name`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
@@ -254,6 +266,7 @@ PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+AUTO_INCREMENT=1
 
 ;
 
@@ -262,7 +275,7 @@ DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_param`;
 CREATE TABLE `sys_param` (
-`id`  bigint(20) NOT NULL ,
+`id`  bigint(20) NOT NULL AUTO_INCREMENT ,
 `param_key`  varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
 `param_value`  varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
 `param_type`  varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
@@ -274,6 +287,7 @@ PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+AUTO_INCREMENT=1
 
 ;
 
@@ -294,20 +308,48 @@ DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='地区编码表'
 
 ;
- 
--- ----------------------------
--- Indexes structure for table acct_role_permission
--- ----------------------------
-CREATE INDEX `role_id` USING BTREE ON `acct_role_permission`(`role_id`) ;
-CREATE INDEX `permission_id` USING BTREE ON `acct_role_permission`(`permission_id`) ;
 
 -- ----------------------------
--- Indexes structure for table acct_user
+-- Auto increment value for `fr_group`
 -- ----------------------------
-CREATE UNIQUE INDEX `login_name` USING BTREE ON `acct_user`(`login_name`) ;
+ALTER TABLE `fr_group` AUTO_INCREMENT=11;
 
 -- ----------------------------
--- Indexes structure for table acct_user_role
+-- Auto increment value for `fr_message`
 -- ----------------------------
-CREATE INDEX `user_id` USING BTREE ON `acct_user_role`(`user_id`) ;
-CREATE INDEX `role_id` USING BTREE ON `acct_user_role`(`role_id`) ;
+ALTER TABLE `fr_message` AUTO_INCREMENT=77;
+
+-- ----------------------------
+-- Auto increment value for `fr_msgbox`
+-- ----------------------------
+ALTER TABLE `fr_msgbox` AUTO_INCREMENT=1;
+
+-- ----------------------------
+-- Auto increment value for `fr_msgtype`
+-- ----------------------------
+ALTER TABLE `fr_msgtype` AUTO_INCREMENT=5;
+
+-- ----------------------------
+-- Auto increment value for `fr_school`
+-- ----------------------------
+ALTER TABLE `fr_school` AUTO_INCREMENT=1;
+
+-- ----------------------------
+-- Auto increment value for `fr_user`
+-- ----------------------------
+ALTER TABLE `fr_user` AUTO_INCREMENT=5;
+
+-- ----------------------------
+-- Auto increment value for `fr_user_group`
+-- ----------------------------
+ALTER TABLE `fr_user_group` AUTO_INCREMENT=19;
+
+-- ----------------------------
+-- Auto increment value for `sys_log`
+-- ----------------------------
+ALTER TABLE `sys_log` AUTO_INCREMENT=1;
+
+-- ----------------------------
+-- Auto increment value for `sys_param`
+-- ----------------------------
+ALTER TABLE `sys_param` AUTO_INCREMENT=1;

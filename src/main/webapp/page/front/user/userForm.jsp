@@ -61,6 +61,7 @@
 						<div class="form-group">
 							<div class="col-lg-offset-2 col-lg-10">
 								<button type="submit" class="btn btn-success">保存</button>
+								<a href="${ctx}/profile" class="btn btn-primary">返回</a>
 							</div>
 						</div>
 					</form>

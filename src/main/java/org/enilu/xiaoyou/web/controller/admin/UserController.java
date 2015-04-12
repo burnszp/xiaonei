@@ -81,14 +81,4 @@ public class UserController {
 		}
 	}
 
-	@At("/admin/user/save")
-	@Ok("redirect:/admin/user")
-	public void save(@Param("::user.") User user) throws Exception {
-		if (user.getId() == null) {
-			userService.save(user);
-		} else {
-			userService.update(user);
-		}
-
-	}
 }

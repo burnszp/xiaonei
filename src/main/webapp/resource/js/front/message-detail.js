@@ -1,6 +1,5 @@
 define(function(require, exports, module) {
-	var Tooltip = require('tooltip');
-	var tooltip = new Tooltip;
+	var tooltip = require('tooltip');
 	/**
 	 * 给回复按钮添加点击事件
 	 */
@@ -17,8 +16,9 @@ define(function(require, exports, module) {
 			'msg.replayId' : rid
 		}, function(result) {
 			var message = eval('(' + result + ')');
+			console.log(typeof message);
 			// 将json格式的字符串转换为json对象
-			if (message.contains('error:')) {
+			if (message!=null&&(typeof message!='object')&&message.indexOf('error:')>-1) {
 				tooltip.tooltip(message.split(':')[1]);
 				return;
 			}

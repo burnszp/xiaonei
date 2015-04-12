@@ -1,7 +1,7 @@
 define(function(require, exports, module) {
 	
-	var Tooltip = require('tooltip');
-	var tooltip = new Tooltip();
+	var tooltip = require('tooltip');
+	 
 	var Page = require('page');
 	new Page(pageSize, pageNumber, pageCount);
 	var selectedIds = "";

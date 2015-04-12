@@ -17,42 +17,43 @@
 				</div>
 
 				<div class="panel-body">
-					<form class="form-horizontal" role="form" id="regForm" action="/admin/user/save"
+					<form class="form-horizontal" role="form" id="regForm" action="${ctx}/user/save"
 						method="post">
 						<div class="form-group">
-							<label class="col-lg-2 control-label">用户名</label>
+							<label class="col-lg-2 control-label">用户名<strong style="color:red">*</strong></label>
 							<div class="col-lg-10">
-								<input type="text" id="name" name="user.uname"
+								<input type="text" id="name" name="user.uname" valid="notnull"
 									class="form-control"  placeholder="请输入用户名"
 								 	> <label id="lblUser" style="color:red;"
 									style="display: none;"></label>  
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">密码</label>
+							<label class="col-lg-2 control-label">密码<strong style="color:red">*</strong></label>
 							<div class="col-lg-10">
-								<input type="password" onblur="checkPwd()" id="pwd"
+								<input type="password" onblur="checkPwd()" id="pwd" valid="notnull"
 									name="user.pwd" class="form-control" value="">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">确认密码</label>
+							<label class="col-lg-2 control-label">确认密码<strong style="color:red">*</strong></label>
 							<div class="col-lg-10">
-								<input type="password" id="confirmPwd" class="form-control"
-									value="" onblur=""><span id="uspan"></span>
+								<input type="password" id="confirmPwd" class="form-control" valid="notnull"
+									value="" onblur=""><label id="lblConfirmPwd" style="color:red;"
+									style="display: none;"></label>  
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">昵称</label>
+							<label class="col-lg-2 control-label">昵称<strong style="color:red">*</strong></label>
 							<div class="col-lg-10">
-								<input type="text" name="user.nickName" class="form-control"
+								<input type="text" name="user.nickName" valid="notnull" class="form-control"
 									value="">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 control-label">真实姓名</label>
 							<div class="col-lg-10">
-								<input type="text" name="user.realName" class="form-control"
+								<input type="text" name="user.realName"   class="form-control"
 									value="">
 							</div>
 						</div>
@@ -90,7 +91,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-lg-offset-2 col-lg-10">
-								<button type="submit" class="btn btn-success">保存</button>
+								<button type="submit" class="btn btn-success" id="regBtn">注册</button>
 							</div>
 						</div>
 					</form>
@@ -101,6 +102,7 @@
 
 	</div>
 	<script type="text/javascript" >
+		var msg = "${message}";
 		seajs.use('${ctx}/resource/js/front/register')
 	</script>
 </body>

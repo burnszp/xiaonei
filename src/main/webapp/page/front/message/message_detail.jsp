@@ -13,6 +13,8 @@
 			<h4>${message.title}</h4>
 			<strong><a href="${ctx}/group/detail?gid=${message.group.id}">${message.group.gname}</a></strong>
 			<em style="padding-left:50px;">${message.msgType.name}</em>
+			&nbsp;&nbsp;<em><fmt:formatDate value="${message.createtime }" pattern="yyyy-MM-dd" /></em>
+			<p>${message.descript}</p>
 		</div>
 	</div>
 	<hr>

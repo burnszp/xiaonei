@@ -78,6 +78,13 @@ public class MessageService extends GeneralService {
 		return null;
 	}
 
+	/**
+	 * 根据帖子id查询帖子详细信息，并且查询该帖子的所有回复
+	 * 
+	 * @param id
+	 *            帖子id
+	 * @return
+	 */
 	public Message find(long id) {
 		Message msg = dao.fetch(Message.class, id);
 		dao.fetchLinks(msg, "user");

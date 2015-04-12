@@ -1,10 +1,8 @@
 define(function(require, exports, module) {
-	var Tooltip = require('tooltip');
-	var tooltip = new Tooltip();
+	var tooltip = require('tooltip');
+	tooltip.show(msg);
 	$('#province').change(
-			
 			function(p1, p2, p3) {
-				 
 				var pid = this.value;
 				console.log(ctx);
 				$.post(ctx + '/front/querycity', {
@@ -25,21 +23,21 @@ define(function(require, exports, module) {
 					}
 				});
 			});
-	
-	
-	function test(){
-		var inputs = $('form:input');
-		console.log( $('form'));
-//		var sels = $('form:select');
-//		inputs.concat(sels); 
-		console.log(inputs);
-	}
+	$('#confirmPwd').blur(function(){
+		var pwd = $('#pwd').val();
+		var pwd2 = $('#confirmPwd').val();
+		if(pwd!=pwd2){
+			$('#lblConfirmPwd').show().html('密码不一致');
+			$('#confirmPwd').focus();
+			return;
+		}
+		$('#lblConfirmPwd').show().html('');
+		
+	});
 	$('#name').blur(function() {
-		console.log(this.value);
-		console.log(this);
 		var name = this.value;
 		if (name == null || name == "") {
-			tooltip.tooltip("用户名不能为空");
+			$('#lblUser').show().html('用户名不能为空');
 		} else {
 			$.post(ctx + '/front/checkname', {
 				name : name
@@ -53,4 +51,20 @@ define(function(require, exports, module) {
 		}
 
 	}); 
+	$('#regBtn').click(function(){
+		var success = true;
+		  $("input").each(function(){
+			    var valid = $(this).attr('valid');
+			    if(valid){
+			    	if(valid=='notnull'){
+			    		if(!$(this).val()){
+			    			tooltip.show('请输入必填项');
+			    			success =false;
+			    		}
+			    	}
+			    }
+			  });
+		return success;
+		
+	})
 })
