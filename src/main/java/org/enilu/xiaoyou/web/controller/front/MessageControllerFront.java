@@ -71,6 +71,13 @@ public class MessageControllerFront {
 		return message;
 	}
 
+	/**
+	 * 跳转至发布帖子页面
+	 * 
+	 * @param gid
+	 * @param request
+	 * @return
+	 */
 	@At("/message/add")
 	public View toAdd(@Param("gid") Long gid, HttpServletRequest request) {
 		Object user = request.getSession().getAttribute("user");
@@ -91,6 +98,14 @@ public class MessageControllerFront {
 		return new JspView("/page/front/message/message_form.jsp");
 	}
 
+	/**
+	 * 发布一条帖子并跳转到新发布的帖子详情页
+	 * 
+	 * @param msg
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
 	@At("/message/save")
 	public View save(@Param("::msg.") Message msg, HttpServletRequest request)
 			throws Exception {

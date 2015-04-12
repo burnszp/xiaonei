@@ -26,8 +26,8 @@
 			<div class="btn-toolbar">
 				<div class="btn-group">
 					<c:if test="${group.status==1}">
-					<a href='${ctx}/group/${inGroup=="1"?"quit":"join"}?gid=${group.id}' class="btn btn-primary ">${inGroup=="1"?"退出":"加入" } </a> <a
-						href="${ctx}/message/add?gid=${group.id}" class="btn btn-primary ">发帖 </a>
+					<a href='${ctx}/group/${inGroup=="1"?"quit":"join"}?gid=${group.id}' class="btn btn-info">${inGroup=="1"?"退出":"加入" } </a> <a
+						href="${ctx}/message/add?gid=${group.id}" class="btn btn-success">我要发帖 </a>
 					</c:if>  
 					<c:if test="${group.status==2}">
 						已关闭

@@ -177,7 +177,7 @@ COMMENT='收件箱'
 -- ----------------------------
 DROP TABLE IF EXISTS `fr_msgtype`;
 CREATE TABLE `fr_msgtype` (
-`id`  bigint(20) NOT NULL ,
+`id`  bigint(20) NOT NULL  AUTO INCREMENT,
 `name`  varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
 `descript`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
 PRIMARY KEY (`id`)

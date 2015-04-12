@@ -28,7 +28,7 @@
 					<label for="exampleInputPassword1">帖子内容</label>
 					<textarea name="msg.descript" class="form-control" rows="10"></textarea>
 				</div>
-				<button type="submit" class="btn btn-primary">提交</button>
+				<button type="submit" class="btn btn-primary">发布</button>
 			</form>
 		</div>
 	</div>

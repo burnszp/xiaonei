@@ -60,9 +60,8 @@ public class GroupControllerFront {
 		pager.setPageNumber(1);
 		pager.setPageSize(10);
 		List<Message> messageList = messageService.searchByPage(
-
-		Cnd.where("gid", "=", gid).and("replayId", "=", 0).desc("createtime"),
-				pager);
+				Cnd.where("gid", "=", gid).and("replayId", "=", 0)
+						.desc("createtime"), pager);
 		request.setAttribute("messageList", messageList);
 		request.setAttribute("group", group);
 		request.setAttribute("userList", userList);

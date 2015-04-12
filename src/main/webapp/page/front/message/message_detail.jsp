@@ -43,7 +43,7 @@
 				<label>回复内容:</label>
 				<textarea id="replayTxt" class="form-control" rows="3"></textarea>
 			</div>
-			<button class="btn btn-primary" id="replayBtn" style="float: right;">提交</button>
+			<button class="btn btn-primary" id="replayBtn" style="float: right;">发布</button>
 		</div>
 	</div>
 
